@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+}
+.toodoo{
+    width: 400px;
+    height: auto;
+    border: 1px solid gray;
+}
+.toodoo_elem{
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+}
+.toodoo_form{
+    display: flex;
+    align-items: center;
+}
+.toodoo_item{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid gray;
+}
+.toodoo_item.done{
+    background-color: #8eb068;
+}
+
+.item_value{
+    border: none;
+    background: transparent;
+    color: #000;
+    width: auto;
+}
+button.changes{
+    opacity: 0;
+    transition: .3s;
+}
+.toodoo_item:hover button.changes{
+    /* opacity: 1; */
+    transition: .3s;
+}
