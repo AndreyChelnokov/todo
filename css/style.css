@@ -40,3 +40,10 @@ button.changes{
     /* opacity: 1; */
     transition: .3s;
 }
+
+
+.toodoo_items{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
