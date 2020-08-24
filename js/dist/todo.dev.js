@@ -2,38 +2,7 @@
 
 var init = function init() {
   var toodooItems = document.querySelector('.toodoo_items');
-  var form = document.querySelector('#createForm'); // Демо данные
-
-  var demo = function demo() {
-    var i = 0;
-    var demodata = [{
-      checked: false,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }, {
-      checked: false,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }, {
-      checked: true,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }, {
-      checked: false,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }, {
-      checked: false,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }, {
-      checked: false,
-      value: "\u0414\u0435\u043C\u043E-\u0441\u0442\u0440\u043E\u043A\u0430 ".concat(i++)
-    }];
-    demodata.forEach(function (elem) {
-      todoList.push(elem);
-    });
-    render();
-    setLocalStorage(todoList);
-  };
-
-  var btn = document.querySelector('.demo');
-  btn.addEventListener('click', demo); // Фиксируем состояние элемента
+  var form = document.querySelector('#createForm'); // Фиксируем состояние элемента
 
   var changes = function changes() {
     var changesItems = document.querySelectorAll('.changes input');
@@ -96,8 +65,7 @@ var init = function init() {
 
   var pushTodo = function pushTodo(newTodo) {
     todoList.push(newTodo);
-    render(todoList); // console.log(todoList)
-
+    render(todoList);
     setLocalStorage(todoList);
   }; // Создаем элемент
 
@@ -114,8 +82,13 @@ var init = function init() {
     e.preventDefault();
     var input = form.querySelector('input');
     var val = input.value;
-    createItem(val);
-    input.value = '';
+
+    if (val.trim() != '') {
+      createItem(val);
+      input.value = '';
+    } else {
+      console.log('Строка пустая');
+    }
   });
 };
 

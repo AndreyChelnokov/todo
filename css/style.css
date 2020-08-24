@@ -4,7 +4,9 @@
 .toodoo{
     width: 400px;
     height: auto;
-    border: 1px solid gray;
+    border-radius: 5px;
+    border: none;
+    background: #e9e9e9;
 }
 .toodoo_elem{
     width: 100%;
@@ -15,12 +17,15 @@
     display: flex;
     align-items: center;
 }
-.toodoo_item{
+.todo_item{
     background-color: aliceblue;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid gray;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 5px;
 }
 .toodoo_item.done{
     background-color: #8eb068;
@@ -61,11 +66,18 @@ button.changes{
 .todo_item.done span{
     text-decoration: line-through;
 }
-.todo_item.done{
+.todo_item.done {
     background-color: #e0e0e0;
+    background: transparent;
+    border: navajowhite;
+    height: 25px;
 }
 .todo_item.done .changes{
     opacity: .5;
+}
+.todo_item.done .changes span{
+    font-weight: 500;
+    color: #000;
 }
 .remove img{
     width: 14px;
@@ -83,4 +95,38 @@ button.changes{
 .changes input{
     margin-top: 3px;
     margin-right: 7px;
+}
+.toodoo_items{
+    padding: 10px;
+    padding-bottom: 5px;
+}
+.toodoo_form {
+    display: flex;
+    align-items: center;
+    background: #000033;
+    border-radius: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 80px;
+}
+
+#createForm input{
+    height: 30px;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+    padding: 0 10px;
+    border: none;
+}
+#createForm .add{
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background: #e9e9e9;
+    color: #000033;
+    font-weight: 600;
+}
+.changes span{
+    color: #000033;
+    font-weight: 600;
 }

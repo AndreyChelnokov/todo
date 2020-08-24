@@ -2,26 +2,6 @@ const init = () => {
     const toodooItems = document.querySelector('.toodoo_items');
     const form = document.querySelector('#createForm');
 
-
-    // Демо данные
-    const demo = () => {
-        let i = 0
-        let demodata = [
-            {checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`},{checked : true,value: `Демо-строка ${i++}`},
-            {checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`}
-        ];
-        demodata.forEach( elem => {
-            todoList.push(elem);
-        })
-        render();
-        setLocalStorage(todoList); 
-    };
-    const btn = document.querySelector('.demo');
-    btn.addEventListener('click', demo);
-
-
-
-
     // Фиксируем состояние элемента
     const changes = () => {
         let changesItems = document.querySelectorAll('.changes input');
@@ -33,7 +13,6 @@ const init = () => {
             })
         })
     }
-
 
     // Удаление элемента
     const removeIrem = () => {
@@ -47,7 +26,6 @@ const init = () => {
         })
     }
     
-
     // Отрисовка элементов на странице
     const render = (list = todoList) => {
         const done = 'done';
@@ -60,7 +38,6 @@ const init = () => {
                 </li>
             `;
         });
-
         removeIrem(); // Получаем актуальный список кнопок удаления
         changes(); // Получаем актуальный список инпутов
     };
@@ -80,7 +57,6 @@ const init = () => {
         localStorage.setItem('list', string);
     }
 
-
     if(localStorage.getItem('list')){
         todoList = JSON.parse(todoList = localStorage.getItem('list'))
     } else {
@@ -90,10 +66,7 @@ const init = () => {
     // Добавляем элемент в список
     const pushTodo = (newTodo) => {
         todoList.push(newTodo);
-
         render(todoList);
-
-        // console.log(todoList)
         setLocalStorage(todoList);
         
     };
@@ -111,8 +84,13 @@ const init = () => {
         e.preventDefault();
         const input = form.querySelector('input');
         let val = input.value;
-        createItem(val);
-        input.value = '';
+        if(val.trim() != ''){
+            createItem(val);
+            input.value = '';
+        } else {
+            console.log('Строка пустая')
+        }
+        
     });
     
 };
