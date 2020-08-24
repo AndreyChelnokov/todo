@@ -58,3 +58,29 @@ button.changes{
 .remove{
     cursor: pointer;
 }
+.todo_item.done span{
+    text-decoration: line-through;
+}
+.todo_item.done{
+    background-color: #e0e0e0;
+}
+.todo_item.done .changes{
+    opacity: .5;
+}
+.remove img{
+    width: 14px;
+    opacity: 0;
+    transition: .3s;
+}
+.todo_item:hover .remove img{
+    opacity: 1;
+    transition: .3s;
+}
+.changes{
+    display: flex;
+    align-items: center;
+}
+.changes input{
+    margin-top: 3px;
+    margin-right: 7px;
+}

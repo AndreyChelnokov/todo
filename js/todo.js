@@ -2,13 +2,34 @@ const init = () => {
     const toodooItems = document.querySelector('.toodoo_items');
     const form = document.querySelector('#createForm');
 
+
+    // Демо данные
+    const demo = () => {
+        let i = 0
+        let demodata = [
+            {checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`},{checked : true,value: `Демо-строка ${i++}`},
+            {checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`},{checked : false,value: `Демо-строка ${i++}`}
+        ];
+        demodata.forEach( elem => {
+            todoList.push(elem);
+        })
+        render();
+        setLocalStorage(todoList); 
+    };
+    const btn = document.querySelector('.demo');
+    btn.addEventListener('click', demo);
+
+
+
+
     // Фиксируем состояние элемента
     const changes = () => {
         let changesItems = document.querySelectorAll('.changes input');
         changesItems.forEach( (elem, i) => {
             elem.addEventListener('input', () => {
                 todoList[i].checked = !todoList[i].checked
-                setLocalStorage(todoList)
+                setLocalStorage(todoList);
+                render();
             })
         })
     }
@@ -29,12 +50,13 @@ const init = () => {
 
     // Отрисовка элементов на странице
     const render = (list = todoList) => {
+        const done = 'done';
         toodooItems.innerHTML = '';
         list.forEach( (elem, i) => {
             toodooItems.innerHTML += `
-                <li class="todo_item item_${i}">
-                    <div class="changes"><input ${elem.checked ? 'checked' : ''} type="checkbox">${elem.value}</div>
-                    <div class="remove">X</div>
+                <li class="todo_item item_${i} ${elem.checked ? 'done' : ''}">
+                    <div class="changes"><input ${elem.checked ? 'checked' : ''} type="checkbox"><span>${elem.value}</span></div>
+                    <div class="remove"><img src="img/rubbish.svg"></div>
                 </li>
             `;
         });
@@ -75,6 +97,7 @@ const init = () => {
         setLocalStorage(todoList);
         
     };
+
     // Создаем элемент
     const createItem = (val) => {
         newTodo = {
