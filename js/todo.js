@@ -2,17 +2,45 @@ const init = () => {
     const toodooItems = document.querySelector('.toodoo_items');
     const form = document.querySelector('#createForm');
 
+    // Фиксируем состояние элемента
+    const changes = () => {
+        let changesItems = document.querySelectorAll('.changes input');
+        changesItems.forEach( (elem, i) => {
+            elem.addEventListener('input', () => {
+                todoList[i].checked = !todoList[i].checked
+                setLocalStorage(todoList)
+            })
+        })
+    }
+
+
+    // Удаление элемента
+    const removeIrem = () => {
+        let close = document.querySelectorAll('.remove');
+        close.forEach( (elem, i) => {
+            elem.addEventListener('click', () => {
+                todoList.splice(i, 1);
+                setLocalStorage(todoList); // Меняем данные в хранилище
+                render(todoList); // Ризуем все на стр.
+            })
+        })
+    }
+    
 
     // Отрисовка элементов на странице
     const render = (list = todoList) => {
         toodooItems.innerHTML = '';
         list.forEach( (elem, i) => {
             toodooItems.innerHTML += `
-                <li class="item_${i}">
-                    ${elem.value}
+                <li class="todo_item item_${i}">
+                    <div class="changes"><input ${elem.checked ? 'checked' : ''} type="checkbox">${elem.value}</div>
+                    <div class="remove">X</div>
                 </li>
             `;
         });
+
+        removeIrem(); // Получаем актуальный список кнопок удаления
+        changes(); // Получаем актуальный список инпутов
     };
 
     // Получаем данные из хранилища
